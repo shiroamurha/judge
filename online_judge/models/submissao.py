@@ -20,7 +20,9 @@ class Submissao(BaseModel):
         max_length=10000
     )
 
-    status = models.TextChoices(StatusSubmission)
+    status = models.TextField(
+        choices=StatusSubmission.choices
+    )
 
     submetido = models.DateTimeField()
     avaliado_em = models.DateTimeField()
@@ -33,9 +35,11 @@ class Submissao(BaseModel):
         validators=[MinValueValidator(32)]
     )
 
-    nota = models.IntegerChoices(Nota)
+    nota = models.IntegerField(
+        choices=Nota.choices
+    )
 
-    log_execucao = models.TextChoices(
+    log_execucao = models.TextField(
         validators=[MinLengthValidator(1)],
         max_length=1000
     )
